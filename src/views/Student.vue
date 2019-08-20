@@ -1,6 +1,46 @@
 <template>
   <div class="home">
-    <h1>{{ message }}</h1>
+    <h1>{{ student.firstName }} {{ student.lastName }}</h1>
+    <h2>{{ student.email }}</h2>
+    <h2>{{ student.phoneNumber }}</h2>
+    <h2>{{ student.bio }}</h2>
+    <h2>{{ student.linkedinURL }}</h2>
+    <h2>{{ student.twitterHandle }}</h2>
+    <h2>{{ student.blog }}</h2>
+    <h2>{{ student.resumeURL }}</h2>
+    <h2>{{ student.gitHub }}</h2>
+    <h2>{{ student.photo }}</h2>
+    <div class="experience">
+      <h1>Experience</h1>
+      <div v-for="experience in student.experience">
+        <h2>{{ experience.company }}</h2>
+        <h2>{{ experience.jobTitle }}</h2>
+        <h2>{{ experience.startDate }} | {{ experience.endDate }}</h2>
+      </div>
+      <div class="education">
+        <h1>Education</h1>
+        <div v-for="education in student.education">
+          <h2>{{ education.university }}</h2>
+          <h2>{{ education.degree }}</h2>
+          <h2>{{ education.startDate }} | {{ education.endDate }}</h2>
+        </div>
+      </div>
+      <div class="skillz">
+        <h1>SKILLS</h1>
+        <div v-for="skill in student.skills">
+          <h2>{{ skill }}</h2>
+        </div>
+      </div>
+      <div class="capstone">
+        <h1>Capstone</h1>
+        <div v-for="capstone in student.capstone">
+          <h2>{{ capstone.name }}</h2>
+          <h2>{{ capstone.description }}</h2>
+          <h2>{{ capstone.url }}</h2>
+          <h2>{{ capstone.screenshot }}</h2>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -49,7 +89,7 @@ export default {
             details: "... .... ..."
           }
         ],
-        skills: ["Ruby", "HTML", "Potions", "Strong Earth Magnets", "Arithmancy"],
+        skills: ["Ruby", "HTML", "Potions", "Rare Earth Magnets", "Arithmancy"],
         capstone: [
           {
             name: "Magical Applications of Computer Programming",
