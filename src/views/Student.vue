@@ -50,19 +50,21 @@ export default {
           }
         ],
         skills: ["Ruby", "HTML", "Potions", "Strong Earth Magnets", "Arithmancy"],
-        capstone: {
-          name: "Magical Applications of Computer Programming",
-          description: "...",
-          url: "capstone@hogwarts.edu",
-          screenshot: "..."
-        }
+        capstone: [
+          {
+            name: "Magical Applications of Computer Programming",
+            description: "...",
+            url: "capstone@hogwarts.edu",
+            screenshot: "..."
+          }
+        ]
       }
     };
   },
   created: function() {
-    axios.get("https://jsonplaceholder.typicode.com/posts/1").then(response => {
-      this.student = response.data;
-    });
+    // axios.get("https://jsonplaceholder.typicode.com/posts/1").then(response => {
+    //   this.student = response.data;
+    // });
   },
   methods: {}
 };
