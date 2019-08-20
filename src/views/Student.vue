@@ -16,13 +16,15 @@
         <h2>{{ experience.company }}</h2>
         <h2>{{ experience.jobTitle }}</h2>
         <h2>{{ experience.startDate }} | {{ experience.endDate }}</h2>
+        <h2>{{ experience.details }}</h2>
       </div>
       <div class="education">
-        <h1>Education</h1>
+        <h1>EDUCATION</h1>
         <div v-for="education in student.education">
           <h2>{{ education.university }}</h2>
           <h2>{{ education.degree }}</h2>
           <h2>{{ education.startDate }} | {{ education.endDate }}</h2>
+          <h2>{{ education.details }}</h2>
         </div>
       </div>
       <div class="skillz">
@@ -32,7 +34,7 @@
         </div>
       </div>
       <div class="capstone">
-        <h1>Capstone</h1>
+        <h1>CAPSTONE</h1>
         <div v-for="capstone in student.capstone">
           <h2>{{ capstone.name }}</h2>
           <h2>{{ capstone.description }}</h2>
