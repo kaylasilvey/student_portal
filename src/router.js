@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Router from "vue-router";
 import Home from "./views/Student.vue";
+import EditResume from "./views/EditResume.vue";
 import Login from "./views/Login.vue";
 import Logout from "./views/Logout.vue";
 
@@ -24,6 +25,7 @@ export default new Router({
       component: () => import(/* webpackChunkName: "about" */ "./views/About.vue")
     },
     { path: "/login", name: "login", component: Login },
-    { path: "/logout", name: "logout", component: Logout }
+    { path: "/logout", name: "logout", component: Logout },
+    { path: "/editresume", name: "editresume", component: EditResume }
   ]
 });
