@@ -104,9 +104,10 @@ export default {
     };
   },
   created: function() {
-    // axios.get("https://jsonplaceholder.typicode.com/posts/1").then(response => {
-    //   this.student = response.data;
-    // });
+    axios.get("https://sleepy-citadel-35395.herokuapp.com/api/students").then(response => {
+      this.student = response.data;
+      console.log("info", this.student);
+    });
   },
   methods: {}
 };
