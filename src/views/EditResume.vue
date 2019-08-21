@@ -1,6 +1,24 @@
 <template>
   <div class="container edit">
-    <form v-on:submit.prevent="experienceEdit()">
+    <h1>{{ student.first_name }} {{ student.last_name }}</h1>
+    <h3>{{ student.email }}</h3>
+    <h3>{{ student.phone_number }}</h3>
+    <h3>
+      <a :href="student.linkedin_url">LinkedIn</a>
+    </h3>
+    <h3>
+      <a :href="student.twitter_handle">{{ student.twitter_handle }}</a>
+    </h3>
+    <h3 v-if="student.personal_url">
+      <a :href="student.personal_url">{{ student.personal_url }}</a>
+    </h3>
+    <h3 v-if="student.resume_url">
+      <a :href="student.resume_url">{{ student.resume_url }}</a>
+    </h3>
+    <h3 v-if="student.github_url">
+      <a :href="student.github_url">{{ student.github_url }}</a>
+    </h3>
+    <form v-bind:model="experience" v-on:submit.prevent="experienceEdit()">
       <h2>Experience</h2>
       <div v-for="experience in student.experiences">
         <div>
@@ -13,22 +31,23 @@
         </div>
         <div>
           Start Date:
-          <input type="text" v-model="experience.start_date" />
+          <input type="date" v-model="experience.start_date" />
         </div>
         <div>
           End Date:
-          <input type="text" v-model="experience.end_date" />
+          <input type="date" v-model="experience.end_date" />
         </div>
         <div>
           Details:
           <input type="text" v-model="experience.details" />
         </div>
       </div>
+      <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
 
     <form v-on:submit.prevent="educationEdit()">
       <h2>Education</h2>
-      <div v-for="education in student.educations">
+      <div v-bind:model="education" v-for="education in student.educations">
         <div>
           University:
           <input type="text" v-model="education.university_name" />
@@ -39,29 +58,31 @@
         </div>
         <div>
           Start Date:
-          <input type="text" v-model="education.start_date" />
+          <input type="date" v-model="education.start_date" />
         </div>
         <div>
           End Date:
-          <input type="text" v-model="education.end_date" />
+          <input type="date" v-model="education.end_date" />
         </div>
         <div>
           Details:
           <input type="text" v-model="education.details" />
         </div>
       </div>
+      <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
 
     <form v-on:submit.prevent="skillEdit()">
       <h2>Skills</h2>
-      <div v-for="skill in student.skills">
+      <div v-bind:model="skill" v-for="skill in student.skills">
         <input type="text" v-model="skill.skill_name" />
       </div>
+      <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
 
     <form v-on:submit.prevent="capstoneEdit()">
       <h2>Capstone</h2>
-      <div v-for="capstone in student.capstones">
+      <div v-bind:model="capstone" v-for="capstone in student.capstones">
         <div>
           Name:
           <input type="text" v-model="capstone.name" />
@@ -79,6 +100,7 @@
           <input type="text" v-model="capstone.screenshot" />
         </div>
       </div>
+      <input type="submit" class="btn btn-primary" value="Submit" />
     </form>
   </div>
 </template>
@@ -154,26 +176,37 @@ export default {
       //     }
       //   ]
       // }
-      student: {}
+      student: {
+        experiences: [],
+        educations: [],
+        skills: [],
+        capstones: []
+      },
+      experience: {},
+      education: {},
+      skill: {},
+      capstone: {}
     };
   },
   created: function() {
-    axios.get("/api/students/1").then(response => {
+    axios.get("https://sleepy-citadel-35395.herokuapp.com/api/students/" + this.$route.params.id).then(response => {
       this.student = response.data;
     });
   },
   methods: {
     experienceEdit: function() {
       var params = {
-        startDate: this.student.experience.start_date,
-        endDate: this.student.experience.end_date,
-        jobTitle: this.student.experience.job_title,
-        company: this.student.experience.company,
-        details: this.student.experience.details
+        startDate: this.experience.start_date,
+        endDate: this.experience.end_date,
+        jobTitle: this.experience.job_title,
+        company: this.experience.company,
+        details: this.experience.details
       };
-      axios.patch(`/api/experiences/${this.student.experience.id}`).then(response => {
-        this.$router.push("/");
-      });
+      axios
+        .patch(`https://sleepy-citadel-35395.herokuapp.com/api/experiences/${this.experience.id}`, params)
+        .then(response => {
+          this.$router.push("/");
+        });
     },
 
     educationEdit: function() {
@@ -184,7 +217,7 @@ export default {
         company: this.student.education.university,
         details: this.student.education.details
       };
-      axios.patch(`/api/educations/${this.student.education.id}`).then(response => {
+      axios.patch(`https://sleepy-citadel-35395.herokuapp.com/api/educations/${this.education.id}`).then(response => {
         this.$router.push("/");
       });
     },
@@ -193,7 +226,7 @@ export default {
       var params = {
         skill_name: this.student.skill.skillname
       };
-      axios.patch(`/api/skills/${this.student.skill.id}`).then(response => {
+      axios.patch(`https://sleepy-citadel-35395.herokuapp.com/api/skills/${this.student.skill.id}`).then(response => {
         this.$router.push("/");
       });
     },
@@ -205,9 +238,11 @@ export default {
         url: this.student.capstone.url,
         screenshot: this.student.capstone.screenshot
       };
-      axios.patch(`/api/capstones/${this.student.capstone.id}`).then(response => {
-        this.$router.push("/");
-      });
+      axios
+        .patch(`https://sleepy-citadel-35395.herokuapp.com/api/capstones/${this.student.capstone.id}`)
+        .then(response => {
+          this.$router.push("/");
+        });
     }
   }
 };
