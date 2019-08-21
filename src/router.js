@@ -18,6 +18,6 @@ export default new Router({
     },
     { path: "/login", name: "login", component: Login },
     { path: "/logout", name: "logout", component: Logout },
-    { path: "/editresume", name: "editresume", component: EditResume }
+    { path: "/students/:id/editresume", name: "editresume", component: EditResume }
   ]
 });
