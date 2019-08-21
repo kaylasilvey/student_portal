@@ -32,12 +32,9 @@
             <div class="nav-right">
               <ul class="sign-in">
                 <li><i class="fa fa-user"></i></li>
-                <li><a href="signin.html">Sign In</a></li>
-                <li><a href="signup.html">Register</a></li>
+                <li><a href="/login">Sign In</a></li>
               </ul>
               <!-- sign-in -->
-
-              <a href="post.html" class="btn">Post Your Job</a>
             </div>
             <!-- nav-right -->
           </div>
@@ -46,31 +43,7 @@
         <!-- navbar -->
       </header>
       <!-- header -->
-      <div class="resume-content">
-        <div class="profile section clearfix">
-          <div class="profile-logo">
-            <img class="img-fluid" src="images/job/resume.jpg" alt="Image" />
-          </div>
-          <div class="profile-info">
-            <h1><!-- {{ student.firstName }} {{ student.lastName }} --></h1>
-            <address>
-              <p>
-                Address: 123 West 12th Street, Suite 456 New York, NY 123456
-                <br />
-                Phone: +012 345 678 910
-                <br />
-                Email:
-                <a href="#">
-                  <span class="__cf_email__" data-cfemail="bad3cec9d7dffac9cfc8c0d3d6dfdddfdfd194d9d5d7">
-                    [email&#160;protected]
-                  </span>
-                </a>
-              </p>
-            </address>
-          </div>
-        </div>
-        <!-- profile -->
-      </div>
+
       <router-view />
     </body>
   </div>
