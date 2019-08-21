@@ -158,7 +158,7 @@ export default {
     };
   },
   created: function() {
-    axios.get("/api/students/1").then(response => {
+    axios.get("https://sleepy-citadel-35395.herokuapp.com/api/students").then(response => {
       this.student = response.data;
     });
   },
